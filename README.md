@@ -1,24 +1,61 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Column         | Type      | Options     |
+| -------------- | --------- | ----------- |
+| nickname       | string    | null: false |
+| email          | string    | null: false |
+| first_name     | string    | null: false |
+| last_name      | string    | null: false |
+| last_name_kana | string    | null: false |
+| first_name_kana| string    | null: false |
+| password       | string    | null: false |
+| birthday       | date      | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items, dependent: :destroy
+- has_many :item_orders, dependent: :destroy
 
-* Ruby version
+## items テーブル
+| Column             | Type      | Options    |
+| ------------------ | --------- | ---------- |
+| name               | string    | null:false |
+| text               | text      | null:false |
+| category           | integer   | null:false |
+| condition          | integer   | null:false |
+| including_postage  | boolean   | null:false |
+| consignor_location | integer   | null:false |
+| ready_time         | integer   | null:false |
+| price              | integer   | null:false |
+| user_id            | references| null:false, foreign_key: true |
 
-* System dependencies
+### Association
+- has_one :item_order, dependent: :destroy
+- belongs_to :user
 
-* Configuration
+## item_orders テーブル
 
-* Database creation
+| Column         | Type      | Options     |
+| -------------- | --------- | ----------- |
+| user_id        | references| null: false, foreign_key: true |
+| item_id        | references| null: false, foreign_key: true |
 
-* Database initialization
+### Association
+- has_one :address, dependent: :destroy
+- belongs_to :user
+- belongs_to :item
 
-* How to run the test suite
+## addresses テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column         | Type      | Options     |
+| -------------- | --------- | ----------- |
+| postal_code    | string    | null:false  |
+| prefecture     | integer   | null:false |
+| city           | string    | null:false |
+| house_number   | string    | null:false |
+| building_name  | string    |            |
+| phone number   | string    | null:false |
+| item_order_id  | references| null: false, foreign_key: true |
 
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :item-order-id
