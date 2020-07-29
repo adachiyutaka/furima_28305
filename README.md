@@ -23,7 +23,7 @@
 | text               | text      | null:false |
 | category           | integer   | null:false |
 | condition          | integer   | null:false |
-| including_postage  | boolean   | null:false |
+| including_postage  | integer   | null:false |
 | consignor_location | integer   | null:false |
 | ready_time         | integer   | null:false |
 | price              | integer   | null:false |
