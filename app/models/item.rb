@@ -13,6 +13,10 @@ class Item < ApplicationRecord
   end
 
   has_one_attached :image
-  belongs_to_active_hash :category_id, :condition_id, :including_postage_id, :consignor_location_id, :ready_time_id
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :including_postage
+  belongs_to_active_hash :consignor_location
+  belongs_to_active_hash :ready_time
   belongs_to :user
 end
