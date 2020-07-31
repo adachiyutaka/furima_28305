@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
 
   describe '商品新規登録' do
     context '新規登録がうまくいくとき' do
-      it "商品情報に不備がなければ新規登録できる" do
+      it "商品詳細の全ての項目に正しい値、ファイルが登録されていれば新規登録できる" do
         expect(@item).to be_valid
       end
     end
