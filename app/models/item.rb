@@ -26,4 +26,6 @@ class Item < ApplicationRecord
   def image_presence
     errors.add(:image, 'must be attached') unless image.attached?
   end
+
+  has_one :item_order, dependent: :destroy
 end
