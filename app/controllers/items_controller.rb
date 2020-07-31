@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit]
+  before_action :owner?, only: [:edit, :update]
 
   def index
     @items = Item.all.order(id: "DESC")
@@ -37,6 +38,12 @@ class ItemsController < ApplicationController
   private
   def set_item
     @item = Item.find_by(id: params[:id])
+  end
+
+  def owner?
+    if @item.user != current_user
+      redirect_to items_path
+    end
   end
 
   def item_params
