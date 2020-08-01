@@ -62,7 +62,7 @@
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= ConsignorLocation.find(@item.consignor_location_id)[:name] %></td>
+          <td class="detail-value"><%= Prefecture.find(@item.consignor_location_id)[:name] %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
