@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_item
+  before_action :sold_out?
 
   def index
     @item_order = ItemOrder.new
@@ -28,5 +29,9 @@ class TransactionsController < ApplicationController
 
   def address_params
     params.permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(item_order_id: @item_order.id)
+  end
+
+  def sold_out?
+    redirect_to root_path if @item.item_order.present?
   end
 end
