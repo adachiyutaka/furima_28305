@@ -9,5 +9,6 @@ FactoryBot.define do
     ready_time_id {2}
     price {1000}
     association :user
+    image { Rack::Test::UploadedFile.new(Rails.root.join('public/images/test_image.jpg'), 'image/jpeg') }
   end
 end
