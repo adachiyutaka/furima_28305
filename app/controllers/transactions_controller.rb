@@ -9,12 +9,7 @@ class TransactionsController < ApplicationController
   def create
     @item_order = ItemOrder.create(item_id: @item.id, user_id: current_user.id)
     if @item_order.valid? && Address.create(address_params).valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: params[:card_token],
-        currency: 'jpy'
-      )
+      payjp_chage
       redirect_to root_path
     else
       @item_order.destroy
@@ -33,5 +28,14 @@ class TransactionsController < ApplicationController
 
   def sold_out?
     redirect_to root_path if @item.item_order.present?
+  end
+
+  def payjp_chage
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: params[:card_token],
+      currency: 'jpy'
+    )
   end
 end
