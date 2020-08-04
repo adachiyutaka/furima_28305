@@ -59,7 +59,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-gem 'rails-pry'
+gem 'pry-rails'
 
 gem 'mini_magick'
 
@@ -70,3 +70,5 @@ gem 'active_hash'
 group :production do
   gem 'rails_12factor'
 end
+
+gem 'payjp'

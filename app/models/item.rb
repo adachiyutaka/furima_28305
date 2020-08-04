@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :including_postage
-  belongs_to_active_hash :consignor_location
+  belongs_to_active_hash :prefecture
   belongs_to_active_hash :ready_time
   belongs_to :user
 
